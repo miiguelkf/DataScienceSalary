@@ -32,7 +32,7 @@ def get_jobs(keyword, num_jobs, verbose, path):
     usa_element.location_once_scrolled_into_view
     time.sleep(.2)
     usa_element.click()
-    time.sleep(1)
+    time.sleep(2)
 
     driver.get(url)
 
@@ -40,24 +40,20 @@ def get_jobs(keyword, num_jobs, verbose, path):
 
     while len(jobs) < num_jobs:  #If true, should be still looking for new jobs.
 
-        #Let the page load. Change this number based on your internet speed.
-        #Or, wait until the webpage is loaded, instead of hardcoding it.
-        time.sleep(10)
-
         #Test for the "Sign Up" prompt and get rid of it.
         try:
             driver.find_element_by_class_name("selected").click()
         except ElementClickInterceptedException:
             pass
 
-        time.sleep(0.5)
+        time.sleep(0.1)
 
         try:
             driver.find_element_by_css_selector('[alt="Close"]').click() #clicking to the X.
         except NoSuchElementException:
             pass
 
-        time.sleep(0.5)
+        time.sleep(0.1)
 
         #Going through each job in this page
         job_buttons = driver.find_elements_by_class_name("jl")  #jl for Job Listing. These are the buttons we're going to click.
@@ -69,7 +65,7 @@ def get_jobs(keyword, num_jobs, verbose, path):
 
             job_button.location_once_scrolled_into_view
             job_button.click()  #You might 
-            time.sleep(1)
+            time.sleep(0.5)
             collected_successfully = False
             
             while not collected_successfully:
@@ -80,7 +76,7 @@ def get_jobs(keyword, num_jobs, verbose, path):
                     job_description = driver.find_element_by_xpath('.//div[@class="jobDescriptionContent desc"]').text
                     collected_successfully = True
                 except:
-                    time.sleep(5)
+                    time.sleep(3)
 
             try:
                 salary_estimate = driver.find_element_by_xpath('.//span[@class="gray salary"]').text
@@ -191,9 +187,16 @@ def get_jobs(keyword, num_jobs, verbose, path):
             
             
         #Clicking on the "next page" button
-        try:
-            driver.find_element_by_xpath('.//li[@class="next"]//a').click()
-        except NoSuchElementException:
+        previous_url = driver.current_url
+        driver.find_element_by_xpath('.//li[@class="next"]//a').click()
+        
+        #Let the page load. Change this number based on your internet speed.
+        #Or, wait until the webpage is loaded, instead of hardcoding it.
+        time.sleep(5)
+        actual_url = driver.current_url
+
+        #If page url didnt change (that is, no more new pages) stop program
+        if previous_url == actual_url:
             print("Scraping terminated before reaching target number of jobs. Needed {}, got {}.".format(num_jobs, len(jobs)))
             break
 
