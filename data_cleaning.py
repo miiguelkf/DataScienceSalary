@@ -27,6 +27,8 @@ df['min_salary'] = df.apply(lambda x: x['min_salary'] if x['hourly_salary'] != 1
 df['max_salary'] = pd.to_numeric(df['Salary Estimate'].apply(lambda x: x.split('-')[1]))
 df['max_salary'] = df.apply(lambda x: x['max_salary'] if x['hourly_salary'] != 1 else x['max_salary']*2, axis=1) #Convert to yearly salary
 
+df['avg_salary'] = ( df['min_salary'] + df['max_salary'] ) / 2
+
 # Company Name
 df['Company Name'] = df.apply(lambda x: x['Company Name'].replace(str(x['Rating']), '').replace('\n', ''), axis=1)
 
