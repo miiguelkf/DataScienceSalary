@@ -1,6 +1,7 @@
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
 from selenium import webdriver
 import time
+import numpy as np
 import pandas as pd
 
 
@@ -79,14 +80,14 @@ def get_jobs(keyword, num_jobs, verbose, path):
                     time.sleep(3)
 
             try:
-                salary_estimate = driver.find_element_by_xpath('.//span[@class="gray salary"]').text
+                salary_estimate = driver.find_element_by_xpath('.//div[@class="salary"]').find_element_by_xpath('.//span[@class="gray salary"]').text
             except NoSuchElementException:
-                salary_estimate = -1 #You need to set a "not found value. It's important."
+                salary_estimate = np.nan #You need to set a "not found value. It's important."
             
             try:
                 rating = driver.find_element_by_xpath('.//span[@class="rating"]').text
             except NoSuchElementException:
-                rating = -1 #You need to set a "not found value. It's important."
+                rating = np.nan #You need to set a "not found value. It's important."
 
             #Printing for debugging
             if verbose:
@@ -110,52 +111,52 @@ def get_jobs(keyword, num_jobs, verbose, path):
                     #</div>
                     headquarters = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Headquarters"]//following-sibling::*').text
                 except NoSuchElementException:
-                    headquarters = -1
+                    headquarters = np.nan
 
                 try:
                     size = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Size"]//following-sibling::*').text
                 except NoSuchElementException:
-                    size = -1
+                    size = np.nan
 
                 try:
                     founded = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Founded"]//following-sibling::*').text
                 except NoSuchElementException:
-                    founded = -1
+                    founded = np.nan
 
                 try:
                     type_of_ownership = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Type"]//following-sibling::*').text
                 except NoSuchElementException:
-                    type_of_ownership = -1
+                    type_of_ownership = np.nan
 
                 try:
                     industry = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Industry"]//following-sibling::*').text
                 except NoSuchElementException:
-                    industry = -1
+                    industry = np.nan
 
                 try:
                     sector = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Sector"]//following-sibling::*').text
                 except NoSuchElementException:
-                    sector = -1
+                    sector = np.nan
 
                 try:
                     revenue = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Revenue"]//following-sibling::*').text
                 except NoSuchElementException:
-                    revenue = -1
+                    revenue = np.nan
 
                 try:
                     competitors = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Competitors"]//following-sibling::*').text
                 except NoSuchElementException:
-                    competitors = -1
+                    competitors = np.nan
 
             except NoSuchElementException:  #Rarely, some job postings do not have the "Company" tab.
-                headquarters = -1
-                size = -1
-                founded = -1
-                type_of_ownership = -1
-                industry = -1
-                sector = -1
-                revenue = -1
-                competitors = -1
+                headquarters = np.nan
+                size = np.nan
+                founded = np.nan
+                type_of_ownership = np.nan
+                industry = np.nan
+                sector = np.nan
+                revenue = np.nan
+                competitors = np.nan
 
                 
             if verbose:
@@ -192,7 +193,7 @@ def get_jobs(keyword, num_jobs, verbose, path):
         
         #Let the page load. Change this number based on your internet speed.
         #Or, wait until the webpage is loaded, instead of hardcoding it.
-        time.sleep(5)
+        time.sleep(10)
         actual_url = driver.current_url
 
         #If page url didnt change (that is, no more new pages) stop program
