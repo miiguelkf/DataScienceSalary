@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv('glassdor_data.csv')
+df = pd.read_csv('glassdoor_data.csv')
 
 # Removing Duplicates ()
 df = df.drop_duplicates(ignore_index=True)
@@ -33,4 +33,4 @@ df['avg_salary'] = ( df['min_salary'] + df['max_salary'] ) / 2
 df['Company Name'] = df.apply(lambda x: x['Company Name'].replace(str(x['Rating']), '').replace('\n', ''), axis=1)
 
 #Export Cleaned Data
-df.to_csv('glassdor_data_cleaned.csv', index=False)
+df.to_csv('glassdoor_data_cleaned.csv', index=False)
