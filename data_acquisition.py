@@ -1,6 +1,12 @@
-import glassdor_scraper as gs
+import glassdoor_scraper as gs
 import pandas as pd
 
-df = gs.get_jobs('data scientist', 1000, False, 'chromedriver.exe')
+keyword = 'data-scientist'
+num_jobs = 1000
+verbose = False
+chromedriver = 'chromedriver.exe'
+output_file_name = 'glassdoor_data.csv'
 
-df.to_csv('glassdoor_data.csv', index=False)
+df = gs.get_jobs(keyword, num_jobs, verbose, chromedriver)
+
+df.to_csv(output_file_name, index=False)
