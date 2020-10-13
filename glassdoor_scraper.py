@@ -19,7 +19,7 @@ def get_jobs(keyword, num_jobs, verbose, path):
     driver = webdriver.Chrome(executable_path=path, options=options)
     driver.set_window_size(1120, 1000)
     
-    url = "https://www.glassdoor.com/Job/jobs.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword="+keyword+"&sc.keyword="+keyword+"&locT=&locId=&jobType="
+    url = "https://www.glassdoor.com/Job/"+keyword+"-jobs-SRCH_KO0,14.htm?minSalary=5000&maxSalary=700000&includeNoSalaryJobs=false"
     home_url = "https://www.glassdoor.com"
 
     driver.get(home_url)
@@ -66,7 +66,7 @@ def get_jobs(keyword, num_jobs, verbose, path):
 
             job_button.location_once_scrolled_into_view
             job_button.click()  #You might 
-            time.sleep(0.5)
+            time.sleep(0.7)
             collected_successfully = False
             
             while not collected_successfully:
