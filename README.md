@@ -38,6 +38,15 @@ Those were keeped in two parts, with ~850 jobs each. That's beacause the site ha
 
 ### Data Cleaning
 
+After the data collection, I needed to do the first cleaning of the data to make it more friendly for the next step.
+
+* Dropped duplicated rows
+* Removed the "Competitors" and "Headquarters" columns (no data)
+* Removed rows without salary
+* Parsed numeric data out of salary (and converted horly value to yearly)
+* Removed rating out of companys name text
+
+### Exploratory Data Analysis
 
 
 
