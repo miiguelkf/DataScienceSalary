@@ -50,6 +50,8 @@ In this part I've started trying to extract the most important information from 
 * *Job Title:* Groupped into two different attributes (Job Type and Seniority)
 * *Job Description:* New columns for every important skill I've mapped (binary 0 or 1)
 
+Here are a few interesting plots
+
 ![alt text](img_eda.png)
 
 ### Model Building
