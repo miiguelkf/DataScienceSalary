@@ -69,6 +69,8 @@ That beein said, four models were tested and it`s results are shown belown
 After finding the best model, I have tried to tune its hyperparameters throught Random Search method.
 The results didn't change and MAE stills at 16.33
 
+![alt text](img_results.png)
+
 ## Credits
 The glassdoor scrapper main code idea was taken from [this](https://github.com/arapfaik/scraping-glassdoor-selenium) GitHub repo.
 * Some minor changes were made to fix some bugs
