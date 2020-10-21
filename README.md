@@ -1,4 +1,4 @@
-# Project - Data Scientist Salarys in USA
+# Project - Data Scientist Salaries in USA
 
 ## Description
 The process of getting a job is pretty hard, starting from the interviews and going all the way to the salary negotiation.
@@ -17,7 +17,7 @@ This project aims to help Data Scientists in this last step, giving them an esti
 
 Did some modification on an pre-existing scrapper code (credits below) to scrap about 1700 jobs postings from Glassdoor. 
 
-Those were keeped in two parts, with ~850 jobs each. That's beacause the site has a maximum of 30 pgs per research and each time a different job may appear. With each job we tried to get the following:
+Those were kept in two parts, with ~850 jobs each. That's beacause the site has a maximum of 30 pgs per research and each time a different job may appear. With each job we tried to get the following:
 
 * Job Title
 * Salary Estimate
